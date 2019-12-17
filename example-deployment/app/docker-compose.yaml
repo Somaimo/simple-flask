@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: example-webapp
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=cs3map.ethz.ch
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=cs3map.ethz.ch
+      - LETSENCRYPT_EMAIL=marc.winkler@ethz.ch
+    restart: always
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
